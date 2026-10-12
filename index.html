@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ug" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#100f0c" />
+    <title>كلاسسىك كىنوخانا — 20-ئەسىر كلاسسىكلىرى</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">ك</span>
+        <span>كلاسسىك كىنوخانا</span>
+      </div>
+      <button class="search-toggle" id="searchToggle" type="button" aria-label="ئىزدەش">⌕</button>
+    </header>
+
+    <main id="app">
+      <section class="view" id="view-home">
+        <section class="hero" id="homeHero" aria-label="تەۋسىيە قىلىنغان كىنو">
+          <img class="hero-art" id="heroPoster" alt="" />
+          <div class="hero-copy">
+            <p class="hero-kicker">20-ئەسىر كىنو كلاسسىكلىرى</p>
+            <h1 id="heroTitle"></h1>
+            <p class="hero-meta" id="heroMeta"></p>
+            <p class="daily-note" id="dailyNote">ئەسلىدىكى كىنولار، ئەبەدىي چۈشلەر</p>
+            <div class="hero-actions">
+              <button class="hero-watch" id="heroDetails" type="button">تەپسىلاتى</button>
+              <button class="hero-save" id="heroFavorite" type="button" aria-label="ياقتۇرىدىغانلارغا قوشۇش">♡</button>
+            </div>
+          </div>
+        </section>
+
+        <div class="greeting">
+          <p class="greeting-line">ياخشىمۇسىز،</p>
+          <h2>20-ئەسىر كلاسسىكلىرىنى ھەقسىز، تولۇق كۆرۈڭ</h2>
+        </div>
+
+        <div class="search-box" id="homeSearchBox">
+          <span class="search-icon">⌕</span>
+          <input id="homeSearchInput" type="search" placeholder="كىنو ئىسمىنى ئىزدەڭ..." autocomplete="off" />
+        </div>
+
+        <section class="row" id="continueSection" hidden>
+          <div class="row-head"><h2>داۋاملىق كۆرۈش</h2></div>
+          <div class="hscroll" id="rowContinue"></div>
+        </section>
+
+        <section class="row" id="personalizedRow" hidden>
+          <div class="row-head"><h2>سىزگە ماس كېلىدىغان كىنولار</h2></div>
+          <div class="hscroll" id="rowPersonalized"></div>
+        </section>
+
+        <section class="weekly-feature" id="weeklyFeature">
+          <img id="weeklyPoster" alt="" loading="lazy" />
+          <div class="weekly-copy">
+            <p class="hero-kicker">بۇ ھەپتىنىڭ تېمىسى</p>
+            <h2 id="weeklyTitle"></h2>
+            <p id="weeklyIntro"></p>
+            <button class="hero-watch" id="weeklyOpen" type="button">تېمىنى كۆرۈش</button>
+          </div>
+        </section>
+
+        <section class="weekly-vote">
+          <div class="row-head"><h2>كېلەر ھەپتە قايسى تېما بولسۇن؟</h2></div>
+          <div class="vote-options" id="voteButtons"></div>
+        </section>
+
+        <section class="row" id="todayInHistory">
+          <div class="row-head"><h2>تارىختىكى بۈگۈن</h2></div>
+          <p class="history-note" id="historyNote"></p>
+          <div class="hscroll" id="rowHistory"></div>
+        </section>
+
+        <section class="row">
+          <div class="row-head"><h2>بۇ ھەپتىدە قوشۇلغانلار</h2></div>
+          <p class="history-note" id="newMoviesNote"></p>
+          <div class="hscroll" id="rowNew"></div>
+        </section>
+
+        <section class="row">
+          <div class="row-head"><h2>بۈگۈنكى تەۋسىيە</h2></div>
+          <div class="hscroll" id="rowToday"></div>
+        </section>
+
+        <section class="row collections-row">
+          <div class="row-head"><h2>كىنو تېمىلىرى</h2></div>
+          <div class="collection-list" id="collectionList"></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-categories" hidden>
+        <h1 class="view-title">كىنو تېمىلىرى</h1>
+        <p class="section-intro">تاللانغان كلاسسىكلارنى بىر-بىرىگە باغلايدىغان ھېكايىلەر.</p>
+        <div class="collection-grid" id="collectionGrid"></div>
+        <div class="filter-bar">
+          <label>ئەڭ ئۇزۇن ۋاقتى
+            <select id="maxRuntime">
+              <option value="0">ھەممىسى</option>
+              <option value="70">70 مىنۇت</option>
+              <option value="90">90 مىنۇت</option>
+              <option value="120">120 مىنۇت</option>
+            </select>
+          </label>
+          <label>دەۋر
+            <select id="eraFilter">
+              <option value="all">ھەممە دەۋر</option>
+              <option value="1920">1920-يىللار</option>
+              <option value="1930">1930-يىللار</option>
+              <option value="1940">1940-يىللار</option>
+              <option value="1950">1950-يىللار</option>
+              <option value="1960">1960-يىللار</option>
+            </select>
+          </label>
+        </div>
+        <div class="grid" id="collectionMovies"></div>
+      </section>
+
+      <section class="view" id="view-search" hidden>
+        <h1 class="view-title">ئىزدەش</h1>
+        <div class="search-box">
+          <span class="search-icon">⌕</span>
+          <input id="searchInput" type="search" placeholder="كىنو، ئارتىس ياكى رېژىسسور ئىسمىنى كىرگۈزۈڭ" autocomplete="off" />
+        </div>
+        <p class="hint" id="searchHint">قىزىق ئىزدەشلەر</p>
+        <button class="retry-button" id="searchRetry" type="button" hidden>قايتا سىناش</button>
+        <div class="grid" id="searchGrid"></div>
+        <div class="empty" id="searchEmpty" hidden><p>ھېچقانداق نەتىجە تېپىلمىدى</p></div>
+      </section>
+
+      <section class="view" id="view-me" hidden>
+        <h1 class="view-title">مېنىڭ</h1>
+        <ul class="menu">
+          <li id="menuFavorites"><span>مېنىڭ ياقتۇرغانلىرىم</span><span class="chev">‹</span></li>
+          <li id="menuWatchlist"><span>كۆرمەكچى بولغانلىرىم</span><span class="chev">‹</span></li>
+        </ul>
+        <section class="source-settings">
+          <h2>كىنو مەنبەسى</h2>
+          <p>كىنو مېتا سانلىق مەلۇماتى Internet Archive دىن ئېلىنىدۇ؛ ھېچقانداق API ئاچقۇچى تەلەپ قىلىنمايدۇ. ھەر بىر نۇسخىنىڭ ھوقۇق ئۇچۇرى ۋە رايونلۇق قانۇننى تەكشۈرۈڭ.</p>
+          <p class="source-status" id="sourceStatus" role="status">Internet Archive بىلەن باغلىنىشقا تەييار</p>
+          <p class="privacy-note">ياقتۇرغانلىرىڭىز، كۆرۈش تارىخى، داۋاملاشتۇرۇش نۇقتىسى، باھا ۋە قىسقا ئىنكاسلىرىڭىز بۇ ئۈسكۈنىدە ساقلىنىدۇ.</p>
+          <a class="privacy-link" href="privacy.html">مەخپىيەتلىك ئۇقتۇرۇشى</a>
+          <button class="clear-data" id="clearLocalData" type="button">بۇ ئۈسكۈنىدىكى سانلىق مەلۇماتنى ئۆچۈرۈش</button>
+        </section>
+      </section>
+
+      <section class="view" id="view-watchlist" hidden>
+        <button class="back" id="watchlistBack" type="button">‹ قايتىش</button>
+        <h1 class="view-title">كۆرمەكچى بولغانلىرىم</h1>
+        <div class="grid" id="watchlistGrid"></div>
+        <div class="empty" id="watchlistEmpty" hidden><p>تىزىملىك ھازىرچە بوش</p></div>
+      </section>
+
+      <section class="view" id="view-favorites" hidden>
+        <button class="back" id="favoritesBack" type="button">‹ قايتىش</button>
+        <h1 class="view-title">مېنىڭ ياقتۇرغانلىرىم</h1>
+        <div class="grid" id="favoritesGrid"></div>
+        <div class="empty" id="favoritesEmpty" hidden><p>ھازىرچە ياقتۇرغان كىنو يوق</p></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>بۇ يەردە ئاممىۋى ساھەدىكى كىنو نۇسخىلىرى توپلىنىدۇ؛ ھەقسىز كۆرۈشتىن بۇرۇن ھەر بىر نۇسخىنىڭ ھوقۇق ئەھۋالى ۋە رايونلۇق قانۇننى تەكشۈرۈڭ.</p>
+      <a href="https://archive.org/" target="_blank" rel="noopener noreferrer">مەنبە: Internet Archive</a>
+    </footer>
+
+    <!-- 底部导航 -->
+    <nav class="tabbar">
+      <button class="tab is-active" data-view="home" type="button"><span>باش بەت</span></button>
+      <button class="tab" data-view="categories" type="button"><span>تۈرلەر</span></button>
+      <button class="tab" data-view="search" type="button"><span>ئىزدەش</span></button>
+      <button class="tab" data-view="me" type="button"><span>مېنىڭ</span></button>
+    </nav>
+
+    <div class="detail" id="detail" hidden>
+      <div class="detail-sheet">
+        <button class="detail-close" id="detailClose" type="button" aria-label="تاقاش">×</button>
+
+        <div class="detail-body">
+          <h2 id="detailTitle"></h2>
+          <p class="detail-meta" id="detailMeta"></p>
+          <p class="detail-alt-title" id="detailAltTitle" hidden></p>
+          <p class="detail-desc" id="detailDesc"></p>
+          <p class="recommendation" id="detailRecommendation"></p>
+          <p class="rights-note" id="rightsNote" hidden></p>
+          <div class="player-wrap" id="playerSection" hidden>
+            <video id="moviePlayer" controls playsinline preload="metadata"></video>
+            <div class="player-controls">
+              <label>سۈپەت
+                <select id="videoQuality" aria-label="سىن سۈپىتى"></select>
+              </label>
+              <button id="subtitleToggle" type="button" aria-pressed="false" disabled>字幕 يوق</button>
+            </div>
+            <p class="player-status" id="playerStatus" role="status"></p>
+          </div>
+          <div class="detail-loading" id="detailLoading" role="status" hidden><span>Internet Archive دىن يۈكلىنىۋاتىدۇ...</span><button id="detailRetry" type="button" hidden>قايتا سىناش</button></div>
+          <section class="detail-info" id="detailInfo" hidden>
+            <p><span>تۈر</span><strong id="detailGenres"></strong></p>
+            <p><span>رېژىسسور</span><strong id="detailDirector"></strong></p>
+            <p><span>ئارتىسلار</span><strong id="detailCast"></strong></p>
+          </section>
+          <section class="row detail-related" id="relatedSection" hidden>
+            <h3>بۇلارنىمۇ كۆرۈڭ</h3>
+            <div class="hscroll" id="relatedMovies"></div>
+          </section>
+          <section class="community-section">
+            <h3>سىزنىڭ باھا ۋە قىسقا ئىنكاسىڭىز</h3>
+            <label class="rating-input">باھا
+              <select id="personalRating" aria-label="شەخسىي باھا">
+                <option value="">باھا قويۇش</option>
+                <option value="5">5 / 5</option>
+                <option value="4">4 / 5</option>
+                <option value="3">3 / 5</option>
+                <option value="2">2 / 5</option>
+                <option value="1">1 / 5</option>
+              </select>
+            </label>
+            <textarea id="reviewInput" maxlength="240" placeholder="بىر جۈملە قىسقا ئىنكاس يېزىڭ"></textarea>
+            <button class="btn btn-primary" id="saveReview" type="button">ساقلاش</button>
+            <div class="review-list" id="reviewList"></div>
+          </section>
+          <div class="detail-actions">
+            <button class="btn btn-ghost" id="detailFavorite" type="button">ياقتۇردۇم</button>
+            <button class="btn btn-ghost" id="detailWatchlist" type="button">كۆرمەكچى</button>
+            <button class="btn btn-ghost" id="shareMovie" type="button">ھەمبەھىرلەش</button>
+            <button class="btn btn-primary" id="watchOptions" type="button">Internet Archive دا كۆرۈش</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
